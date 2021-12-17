@@ -11,7 +11,7 @@ export default function TimeChoice() {
             <Header/>
             <div id='choose-time'>Selecione o horário</div>
             <div id='available-times'>
-                {times.map( elem => <Time day={elem.day} sessions={elem.sessions}/>)}
+                {times.map( elem => <Time key={elem.day} day={elem.day} sessions={elem.sessions}/>)}
             </div>
             <MovieFooter/>
         </>

@@ -7,7 +7,7 @@ export default function Time({day, sessions}) {
                 {day}
             </p>
             <span className="sessions">
-                {sessions.map(elem => <div className="session">{elem}</div>)}
+                {sessions.map(elem => <div key={day+elem} className="session">{elem}</div>)}
             </span>
             
         </>

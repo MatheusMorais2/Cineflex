@@ -6,14 +6,17 @@ import './reset.css';
 import './style.css';
 import Header from '../header';
 import MovieChoice from '../movieChoice';
-import TimeChoice from '../timeChoice';
+/* import TimeChoice from '../timeChoice';
+import SeatChoice from '../seatChoice'; */
+
 
 export default function App() {
     return (
         <>
             <Header />
-            {/* <MovieChoice /> */}
-            <TimeChoice />
+            <MovieChoice />
+            {/* <TimeChoice /> */}
+            {/* <SeatChoice/> */}
         </>
         
     )
