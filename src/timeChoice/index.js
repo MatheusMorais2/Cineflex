@@ -1,20 +1,38 @@
+import { useState, useEffect } from 'react';
 import Header from '../header';
 import MovieFooter from '../movieFooter';
 import Time from '../time';
+import axios from 'axios';
 import './style.css';
+import { useParams } from 'react-router-dom';
 
 export default function TimeChoice() {
-    const times = [{day: 'Quinta-feira - 24/06/2021', sessions: ['15:00', '19:00'] },
-        { day: 'Sexta-feira - 25/06/2021', sessions: ['15:00', '19:00'] }];
+    const { idSession } = useParams();
+    console.log('Destructured idSession: ',idSession);
+    const [infoMovie, setInfoMovie] = useState(null);
+
+    useEffect( () => {
+        const requisition = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/movies/${idSession}/showtimes`);
+        requisition.then( response => {
+            setInfoMovie(response.data)
+            console.log('infoMovie: ',infoMovie);
+        });
+        requisition.catch( () => alert('requisiçao de sessoes deu merda'));
+    }, [] );
+
+    
+
     return (
         <>
             <Header/>
             <div id='choose-time'>Selecione o horário</div>
             <div id='available-times'>
-                {times.map( elem => <Time key={elem.day} day={elem.day} sessions={elem.sessions}/>)}
+                {infoMovie 
+                    ? infoMovie.days.map( elem => <Time key={elem.id} day={elem.date} weekday={elem.weekday} sessions={elem.showTimes}/>)
+                    : 'Carregando'
+                }
             </div>
             <MovieFooter/>
         </>
     )
-    
 }
