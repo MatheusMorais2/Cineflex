@@ -1,32 +1,44 @@
 import './style.css';
 import MovieFooter from '../movieFooter';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Seat from '../seat';
 
 export default function SeatChoice() {
-    let arraySeats = [];
-    for (let i = 1; i <= 50; i++) {
-        arraySeats.push(i.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }))
-    };
+    const { idSession } = useParams();
+    console.log('idSession: ',idSession);
+    const [arraySeats, setarraySeats] = useState(null);
 
+    useEffect( () => {
+        const requisition = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSession}/seats`);
+        requisition.then(response => {
+            console.log(response.data.seats);
+            setarraySeats(response.data.seats);
+            console.log('arraySeats: ', arraySeats);
+        });
+    }, []);
+    
     return ( 
         <Container>
             <SelectSeats>Selecione o(s) assento(s)</SelectSeats>
             <SeatsContainer>
-                {arraySeats.map( elem => <Seat availability={'available'}>{elem}</Seat> )}
+                {arraySeats ? arraySeats.map( (elem, index) => <Seat isAvailable={elem.isAvailable} isChoosen={false} index={index} id={elem.id}/>) : 'Carregando...' }
             </SeatsContainer>
             <AvailabilityContainer>
                 <Availability>
-                    <Seat availability={'choosen'}/>
+                    <Seat noNumber={true} isAvailable={false} isChoosen={true} index={null} />
                     Selecionado
                 </Availability>
                     
                 <Availability>
-                    <Seat availability={'available'} />
+                    <Seat noNumber={true} isAvailable={true} isChoosen={false} index={null} />
                     Disponível
                 </Availability>
 
                 <Availability>
-                    <Seat availability={'unavailable'} />
+                    <Seat noNumber={true} isAvailable={false} isChoosen={false} index={null} />
                     Indisponível
                 </Availability>
             </AvailabilityContainer>
@@ -74,30 +86,6 @@ const SeatsContainer = styled.div`
     margin-bottom: 16px;
 `;
 
-const Seat = styled.div`
-    width: 26px;
-    height: 26px;
-    background-color: 
-        ${props => {
-            if (props.availability === 'choosen') return  '#8DD7CF';
-            if (props.availability === 'available') return '#C3CFD9';
-            if (props.availability === 'unavailable') return '#FBE192';
-        }};
-    border: 1px solid
-        ${props => {
-            if (props.availability === 'choosen') return '#1AAE9E';
-            if (props.availability === 'available') return '#7B8B99';
-            if (props.availability === 'unavailable') return '#F7C52B';
-        }};
-    border-radius: 50%;
-    color: #000;
-    font-family: 'Roboto';
-    font-size: 11px;
-    line-height: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
 
 const AvailabilityContainer = styled.div`
     width: 100%;
