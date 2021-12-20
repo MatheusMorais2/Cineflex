@@ -1,12 +1,13 @@
 import './style.css';
-import MovieFooter from '../movieFooter';
-import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+import styled from 'styled-components';
+import MovieFooter from '../movieFooter';
 import Seat from '../seat';
+import InputContainer from '../InputContainer';
 
-export default function SeatChoice() {
+export default function SeatChoice({name, setName, cpf, setCpf, choosenSeats, setchoosenSeats}) {
     const { idSession } = useParams();
     const [arraySeats, setarraySeats] = useState(null);
     const [infoMovie, setInfoMovie] = useState(null);
@@ -16,15 +17,24 @@ export default function SeatChoice() {
         requisition.then(response => {
             setarraySeats(response.data.seats);
             setInfoMovie(response.data);
+            console.log('infoMovie: ', infoMovie);
         });
     }, []);
     
+    let orderInfo= {ids: choosenSeats, name: name, cpf: cpf};
+
     return ( 
         <Container>
+
             <SelectSeats>Selecione o(s) assento(s)</SelectSeats>
+
             <SeatsContainer>
-                {arraySeats ? arraySeats.map( (elem, index) => <Seat key={index} isAvailable={elem.isAvailable} isChoosen={false} index={index} id={elem.id}/>) : 'Carregando...' }
+                {arraySeats 
+                    ? arraySeats.map( (elem, index) => <Seat key={index} isAvailable={elem.isAvailable} isChoosen={false} choosenSeats={choosenSeats} setchoosenSeats={setchoosenSeats} index={index} id={elem.id}/>) 
+                    : 'Carregando...' 
+                }
             </SeatsContainer>
+
             <AvailabilityContainer>
                 <Availability>
                     <Seat noNumber={true} isAvailable={false} isChoosen={true} index={null} />
@@ -41,16 +51,23 @@ export default function SeatChoice() {
                     Indisponível
                 </Availability>
             </AvailabilityContainer>
-            <InputContainer>
-                Nome do comprador:
-                <Input placeholder='Digite seu nome...'/>
-            </InputContainer>
-            <InputContainer>
-                CPF do comprador:
-                <Input placeholder='Digite seu CPF...' />
-            </InputContainer>
-            <ReserveButton >Reservar assento(s)</ReserveButton>
-            {infoMovie ? <MovieFooter poster={infoMovie.movie.posterURL} movie={infoMovie.movie.title} session={infoMovie.name} day={infoMovie.day.weekday} /> : 'Carregando...'}
+
+            <InputContainer text='Nome do comprador:' placeholder='Digite seu nome...' setState={setName}/>
+            <InputContainer text='CPF do comprador:' placeholder='Digite seu CPF...' setState={setCpf} />
+            
+            <Link to='/sucesso'>
+                <ReserveButton onClick={() => {
+                    const req = axios.post('https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many', orderInfo);
+                }}>
+                    Reservar assento(s)
+                </ReserveButton>
+            </Link>
+
+            
+            {infoMovie 
+                ? <MovieFooter poster={infoMovie.movie.posterURL} movie={infoMovie.movie.title} session={infoMovie.name} day={infoMovie.day.weekday} /> 
+                : 'Carregando...'
+            }
         </Container>
     );
 }
@@ -104,27 +121,6 @@ const Availability = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`;
-
-const InputContainer = styled.div`
-    width:100%;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Roboto';
-    font-style: 'Regular';
-    font-size: 18px;
-    line-height: 21px;
-    margin-bottom: 7px;
-    color:#293845;
-
-`;
-
-const Input = styled.input`
-    width: 100%;
-    height: 50px;
-    border: 1px solid #D4D4D4;
-    border-radius: 3px;
-    padding: 0 18px;
 `;
 
 const ReserveButton = styled.button`

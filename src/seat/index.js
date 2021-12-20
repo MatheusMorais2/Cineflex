@@ -1,19 +1,29 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
-export default function Seat({isAvailable, isChoosen, index, id, noNumber}) {
+export default function Seat({isAvailable, isChoosen, index, id, noNumber, setchoosenSeats, choosenSeats}) {
     const [choosen, setChoosen] = useState(isChoosen);
     console.log(choosen);
+    
+    let aux = choosenSeats;
 
-    function handleClick(choosen, isAvailable, setChoosen) {
+    function handleClick() {
         if (!isAvailable && !choosen) alert('Esse assento não está disponível');
-        else if (choosen) setChoosen(false);
-        else if (isAvailable) setChoosen(true);
-        console.log('choosen: ',choosen);
-    }
+        else if (choosen) {
+            setChoosen(false);
+            setchoosenSeats(aux.splice(aux.indexOf(id), 1));
+            console.log(choosenSeats);
+        }
+        else if (isAvailable) {
+            setChoosen(true);
+            aux.push(id);
+            setchoosenSeats(aux);
+            console.log(choosenSeats);
+        };
+    };
 
     return (
-        <Container onClick={() => handleClick(choosen, isAvailable, setChoosen)} isAvailable={isAvailable} isChoosen={choosen}>
+        <Container onClick={() => handleClick()} isAvailable={isAvailable} isChoosen={choosen}>
             {!noNumber ? index+1 : ''}
         </Container>
     );

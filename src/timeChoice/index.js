@@ -6,9 +6,8 @@ import axios from 'axios';
 import './style.css';
 import { useParams } from 'react-router-dom';
 
-export default function TimeChoice() {
+export default function TimeChoice({setSession}) {
     const { idMovie } = useParams();
-    console.log('Destructured idSession: ',idMovie);
     const [infoMovie, setInfoMovie] = useState(null);
 
     useEffect( () => {
@@ -17,7 +16,7 @@ export default function TimeChoice() {
             setInfoMovie(response.data)
             
         });
-        requisition.catch( () => alert('requisiçao de sessoes deu merda'));
+        requisition.catch( () => alert('requisiçao de sessoes falhou'));
     }, [] );
 
     if (infoMovie) console.log('infoMovie: ', infoMovie);
@@ -28,11 +27,14 @@ export default function TimeChoice() {
             <div id='choose-time'>Selecione o horário</div>
             <div id='available-times'>
                 {infoMovie 
-                    ? infoMovie.days.map( elem => <Time key={elem.id} day={elem.date} weekday={elem.weekday} sessions={elem.showtimes}/>)
+                    ? infoMovie.days.map( elem => <Time key={elem.id} setSession={setSession} day={elem.date} weekday={elem.weekday} sessions={elem.showtimes}/>)
                     : 'Carregando'
                 }
             </div>
-            {infoMovie ? <MovieFooter poster={infoMovie.posterURL} movie={infoMovie.title} /> : 'Carregando'}
+            {infoMovie 
+                ? <MovieFooter poster={infoMovie.posterURL} movie={infoMovie.title} /> 
+                : 'Carregando'
+            }
         </>
     )
 }

@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
-export default function Session({ id, name}) {
+export default function Session({ id, name, setSession}) {
     return (
         <Link to={'/assentos/'+id}>
-            <Container>
+            <Container onClick={() => setSession(id)}>
                 {name}
             </Container>
         </Link>
