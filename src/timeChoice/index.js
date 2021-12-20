@@ -32,7 +32,7 @@ export default function TimeChoice() {
                     : 'Carregando'
                 }
             </div>
-            <MovieFooter/>
+            {infoMovie ? <MovieFooter poster={infoMovie.posterURL} movie={infoMovie.title} /> : 'Carregando'}
         </>
     )
 }

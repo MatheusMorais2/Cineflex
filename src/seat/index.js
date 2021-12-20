@@ -1,19 +1,30 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
 export default function Seat({isAvailable, isChoosen, index, id, noNumber}) {
+    const [choosen, setChoosen] = useState(isChoosen);
+    console.log(choosen);
+
+    function handleClick(choosen, isAvailable, setChoosen) {
+        if (!isAvailable && !choosen) alert('Esse assento não está disponível');
+        else if (choosen) setChoosen(false);
+        else if (isAvailable) setChoosen(true);
+        console.log('choosen: ',choosen);
+    }
+
     return (
-        <Container isAvailable={isAvailable} isChoosen={isChoosen}>
+        <Container onClick={() => handleClick(choosen, isAvailable, setChoosen)} isAvailable={isAvailable} isChoosen={choosen}>
             {!noNumber ? index+1 : ''}
         </Container>
     );
+
 }
 
-const Container = styled.div`
+const Container = styled.button`
     width: 26px;
     height: 26px;
     background-color: 
         ${props => {
-        /* if (props.availability === 'choosen') return  '#8DD7CF'; */
             if (props.isChoosen) return '#8DD7CF';
             else if (props.isAvailable) return '#C3CFD9';
             else return '#FBE192';

@@ -8,15 +8,14 @@ import Seat from '../seat';
 
 export default function SeatChoice() {
     const { idSession } = useParams();
-    console.log('idSession: ',idSession);
     const [arraySeats, setarraySeats] = useState(null);
+    const [infoMovie, setInfoMovie] = useState(null);
 
     useEffect( () => {
         const requisition = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${idSession}/seats`);
         requisition.then(response => {
-            console.log(response.data.seats);
             setarraySeats(response.data.seats);
-            console.log('arraySeats: ', arraySeats);
+            setInfoMovie(response.data);
         });
     }, []);
     
@@ -24,7 +23,7 @@ export default function SeatChoice() {
         <Container>
             <SelectSeats>Selecione o(s) assento(s)</SelectSeats>
             <SeatsContainer>
-                {arraySeats ? arraySeats.map( (elem, index) => <Seat isAvailable={elem.isAvailable} isChoosen={false} index={index} id={elem.id}/>) : 'Carregando...' }
+                {arraySeats ? arraySeats.map( (elem, index) => <Seat key={index} isAvailable={elem.isAvailable} isChoosen={false} index={index} id={elem.id}/>) : 'Carregando...' }
             </SeatsContainer>
             <AvailabilityContainer>
                 <Availability>
@@ -50,10 +49,8 @@ export default function SeatChoice() {
                 CPF do comprador:
                 <Input placeholder='Digite seu CPF...' />
             </InputContainer>
-
-            {/* <inputCPF></inputCPF>
-            <ReserveButton></ReserveButton> */}
-            <MovieFooter></MovieFooter>
+            <ReserveButton >Reservar assento(s)</ReserveButton>
+            {infoMovie ? <MovieFooter poster={infoMovie.movie.posterURL} movie={infoMovie.movie.title} session={infoMovie.name} day={infoMovie.day.weekday} /> : 'Carregando...'}
         </Container>
     );
 }
@@ -128,4 +125,18 @@ const Input = styled.input`
     border: 1px solid #D4D4D4;
     border-radius: 3px;
     padding: 0 18px;
+`;
+
+const ReserveButton = styled.button`
+    width: 225px;
+    height: 42px;
+    background-color: #E8833A;
+    color: #fff;
+    border-radius: 3px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: calc(50% - 112px);
+    margin-top: 10px;
 `;
