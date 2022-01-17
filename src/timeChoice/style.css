@@ -1,21 +1,22 @@
-#choose-time{
-    width: 100vw;
-    height: 110px;
-    margin-top: 67px;
+#choose-time {
+  width: 100vw;
+  height: 110px;
+  margin-top: 67px;
 
-    display:flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0.04em;
-    color: #293845;
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  color: #293845;
 }
 
 #available-times {
-    padding-left: 26px;
-    gap: 23px;
+  padding-left: 26px;
+  gap: 23px;
+  padding-bottom: 117px;
 }
