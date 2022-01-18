@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# CineFlex
+Ever wanted to book tickets for a movie in the confort of your home? Now you can, using this browser application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![cineflex-starting-screen](https://user-images.githubusercontent.com/93623979/149995323-74798e41-bcbc-4c64-8164-c2ea1cc6203b.png)
+![cineflex-horario](https://user-images.githubusercontent.com/93623979/149995311-d1a21f72-5de7-4a7d-9b29-a0881de930da.png)
+![cineflex-seats](https://user-images.githubusercontent.com/93623979/149995318-ad1c452a-46a3-4069-a46a-64d672d0e5cd.png)
+![cineflex-resumo](https://user-images.githubusercontent.com/93623979/149995314-a8c890f9-d7ac-468c-b26f-e4c4a9ab6426.png)
 
-## Available Scripts
+### Try it out now at cineflex-black.vercel.app
 
-In the project directory, you can run:
+# About
+This is a web application for booking fictional tickets for movies without leaving your home. The future is now!
+- Sort through a collection of movies
+- Choose the best day and session for you
+- Book as many seats as you want, bring everyone!
+- Get a summary of your booking at the end
+- Do it again!
 
-### `npm start`
+All tickets and sessions are fictional, this is just an educational project for me to test my React skills :)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Technologies
+The following tools and frameworks were used in the construction of the project: < br />
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+<img src="https://camo.githubusercontent.com/02621d023c99135970b1abbfe932b6a6a0b2e42aaebedae5f8299fd88d9ce029/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6178696f732532302d2532333230323332612e7376673f267374796c653d666f722d7468652d626164676526636f6c6f723d696e666f726d6174696f6e616c" />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# How to run
 
-### `npm test`
+### You can always just run it directly on your browser by visiting: cineflex-black.vercel.app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1) Open a terminal and choose a folder to install the application
+ ```
+ cd path/to/folder
+ ```
+2) Clone this repository 
+```
+git clone git@github.com:MatheusMorais2/Cineflex.git
+```
+3) Install dependencies
+```
+npm i
+```
+4) Run the application
+```
+npm start
+```
+5) Finally access http://localhost:3000 on your favorite browser
