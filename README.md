@@ -6,7 +6,7 @@ Ever wanted to book tickets for a movie in the confort of your home? Now you can
 ![cineflex-seats](https://user-images.githubusercontent.com/93623979/149995318-ad1c452a-46a3-4069-a46a-64d672d0e5cd.png)
 ![cineflex-resumo](https://user-images.githubusercontent.com/93623979/149995314-a8c890f9-d7ac-468c-b26f-e4c4a9ab6426.png)
 
-### Try it out now at cineflex-black.vercel.app
+### Try it out now at https://cineflex-black.vercel.app
 
 # About
 This is a web application for booking fictional tickets for movies without leaving your home. The future is now!
@@ -28,7 +28,7 @@ The following tools and frameworks were used in the construction of the project:
 
 # How to run
 
-### You can always just run it directly on your browser by visiting: cineflex-black.vercel.app
+### You can always just run it directly on your browser by visiting: https://cineflex-black.vercel.app
 
 1) Open a terminal and choose a folder to install the application
  ```
